@@ -211,9 +211,10 @@ void NOINLINE Copter::send_current_waypoint(mavlink_channel_t chan)
 void NOINLINE Copter::send_rangefinder(mavlink_channel_t chan)
 {
     // exit immediately if rangefinder is disabled
-    if (!rangefinder.has_data_orient(ROTATION_PITCH_270)) {
-        return;
-    }
+    //@jonathan removed
+    // if (!rangefinder.has_data_orient(ROTATION_PITCH_270)) {
+    //     return;
+    // }
     
     AP_Proximity::Proximity_Distance_Array dist_array;
     float uSharp_Patch_dist = 0.0f;
@@ -223,7 +224,7 @@ void NOINLINE Copter::send_rangefinder(mavlink_channel_t chan)
     
     mavlink_msg_rangefinder_send(
             chan,
-            rangefinder.distance_cm_orient(ROTATION_PITCH_270) * 0.01f,
+            /*rangefinder.distance_cm_orient(ROTATION_PITCH_270) * */0.01f, //@jonathan removed
             uSharp_Patch_dist);
 }
 #endif
